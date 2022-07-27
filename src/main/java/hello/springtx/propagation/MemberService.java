@@ -28,6 +28,7 @@ public class MemberService {
 
     }
 
+    @Transactional
     public void joinV2(String username) {
         Member member = new Member(username);
         Log logMessage = new Log(username);
@@ -41,7 +42,7 @@ public class MemberService {
             logRepository.save(logMessage); // DB 로그 저장시 예외가 발생하면 예외 복구
        } catch (RuntimeException e) {
             log.info("log 저장에 실패했습니다. logMessage={}", logMessage.getMessage());
-            log.info("정상 흐름 반");
+            log.info("정상 흐름 반환");
         }
         log.info("=== logRepository 호출 종료 ===");
 
